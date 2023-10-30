@@ -9,7 +9,7 @@ struct Cliente {
     string apellido;
     string email;
     string telefono;
-    //time_t fechaNac;
+    time_t fechaNac;
     int estado;
 };typedef struct Cliente sCliente;
 

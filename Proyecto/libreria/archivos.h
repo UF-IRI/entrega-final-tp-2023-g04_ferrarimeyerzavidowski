@@ -5,7 +5,7 @@
 #include <cliente.h>
 #include <encabezados.h>
 
-typedef enum codArchivos{ErrorApertura=-1, ErrorEscritura=0, ExitoOperacion=1,BorradoExitoso=2} eCodArchivos;
+typedef enum codArchivos{ErrorApertura=-1, ErrorEscritura=0, ExitoOperacion=1,BorradoExitoso=2,ErrorBorrado=-2} eCodArchivos;
 
 eCodArchivos LeerClases(fstream *archi,sTipo* tipos);
 eCodArchivos LeerClientes(fstream *archi,sCliente *clientes);
