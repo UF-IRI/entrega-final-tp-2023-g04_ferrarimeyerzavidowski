@@ -1,13 +1,14 @@
-#ifndef CLASES_H
-#define CLASES_H
-#include "encabezados.h"
+#ifndef TIPO_H
+#define TIPO_H
+#include <encabezados.h>
 
 enum Clase {Musculacion=0,Spinning,Yoga,Pilates,Stretching,Zumba,Boxeo};
 typedef enum Clase eClase;
-struct Clase{
+
+struct Tipo{
     unsigned int idClase;
     eClase nombreClase;
-    float horario;
-};typedef struct Clase sClase;
+    time_t horario;
+};typedef struct Tipo sTipo;
 
-#endif // CLASES_H
+#endif // TIPO_H

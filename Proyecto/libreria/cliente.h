@@ -1,7 +1,7 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
-#include "encabezados.h"
-#include "clases.h"
+#include <encabezados.h>
+#include <tipo.h>
 
 struct Cliente {
     unsigned int idCliente;
@@ -9,12 +9,13 @@ struct Cliente {
     string apellido;
     string email;
     string telefono;
-    string fechaNac;
+    //time_t fechaNac;
     int estado;
 };typedef struct Cliente sCliente;
 
-bool Inscribirse(); //random para obtener horario y que clase ir  (usar el archivo de clases (.csv))
-void EstadoCuenta(); //chequear estado y pagar lo faltante "set del estado"
-void DarseDeBaja(sClase* clase,float horario);
+//funcion inscribirse necesita por parametros el archivos de las clase
+sTipo* Inscribirse(); //random para obtener horario y que clase ir  (usar el archivo de clases (.csv))
+
+void EstadoCuenta(sCliente* cliente,int num); //chequear estado y pagar lo faltante "set del estado"
 
 #endif // CLIENTE_H
