@@ -16,6 +16,6 @@ struct Cliente {
 //funcion inscribirse necesita por parametros el archivos de las clase
 sTipo* Inscribirse(); //random para obtener horario y que clase ir  (usar el archivo de clases (.csv))
 
-void EstadoCuenta(sCliente* cliente,int num); //chequear estado y pagar lo faltante "set del estado"
+bool EstadoCuenta(sCliente* cliente); //chequear estado y pagar lo faltante "set del estado"
 
 #endif // CLIENTE_H

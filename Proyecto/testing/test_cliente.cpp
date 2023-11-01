@@ -2,6 +2,7 @@
 #include <catch2/catch.hpp>
 #include <encabezados.h>
 
+//OJO CAMBIE LA FUNCION
 TEST_CASE ("Estado de pago"){
     sCliente* cliente= new sCliente;
     cliente->idCliente = 12;

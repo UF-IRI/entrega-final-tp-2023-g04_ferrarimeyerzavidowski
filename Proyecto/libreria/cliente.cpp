@@ -1,11 +1,17 @@
 #include <cliente.h>
 
-void EstadoCuenta(sCliente* cliente,int num)
+bool EstadoCuenta(sCliente* cliente)
 {
-   // srand(time(NULL));
-   // num=rand()%2 +1;
-    if (cliente->estado <0){
-        if (num ==1) //lo quiere pagar
+    srand(time(NULL));
+    num=rand()%2 +1;
+    //print(num) //para ver en el testing si funciona
+    if (cliente->estado <0){ //endeudado
+       if (num ==1){ //lo quiere pagar
             cliente->estado=0;
+           return true;
+       } else{ //no lo quiere pagar
+           return false;
+       }
     }
+    return true;
 }
