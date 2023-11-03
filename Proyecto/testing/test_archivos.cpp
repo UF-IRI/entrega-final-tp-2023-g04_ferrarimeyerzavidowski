@@ -1,3 +1,6 @@
-//#include <encabezados.h>
-//#include <archivos.h>
+#include <archivos.cpp>
+
+TEST_CASE("archivo leer clase") {
+
+}
 
