@@ -3,8 +3,8 @@
 bool EstadoCuenta(sCliente* cliente)
 {
     srand(time(NULL));
-    num=rand()%2 +1;
-    //print(num) //para ver en el testing si funciona
+    int num=rand()%2 +1;
+    //print(num);//para ver en el testing si funciona
     if (cliente->estado <0){ //endeudado
        if (num ==1){ //lo quiere pagar
             cliente->estado=0;
@@ -13,5 +13,5 @@ bool EstadoCuenta(sCliente* cliente)
            return false;
        }
     }
-    return true;
+    return true; //no estuvo endeudado
 }

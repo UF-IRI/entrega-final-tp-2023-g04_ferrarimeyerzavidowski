@@ -1,6 +1,6 @@
 #ifndef TIPO_H
 #define TIPO_H
-#include <encabezados.h>
+#include "encabezados.h"
 
 struct Tipo{
     unsigned int idClase;

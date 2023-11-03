@@ -1,6 +1,6 @@
 #ifndef ASISTENCIA_H
 #define ASISTENCIA_H
-#include <encabezados.h>
+#include "encabezados.h"
 
 typedef struct {
     unsigned int idCurso;

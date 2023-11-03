@@ -1,9 +1,6 @@
 #ifndef GIMNASIO_H
 #define GIMNASIO_H
-#include <encabezados.h>
-#include <cliente.h>
-#include <tipo.h>
-#include <funciones.h>
+#include "funciones.h"
 
 struct Gimnasio{
     string nombre;

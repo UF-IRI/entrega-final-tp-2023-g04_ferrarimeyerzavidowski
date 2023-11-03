@@ -1,3 +1,3 @@
-#include <encabezados.h>
-#include <archivos.h>
+//#include <encabezados.h>
+//#include <archivos.h>
 

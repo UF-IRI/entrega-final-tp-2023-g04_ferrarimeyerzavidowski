@@ -1,8 +1,7 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
-#include <encabezados.h>
-#include <cliente.h>
+#include "cliente.h"
 
 sCliente* RandomSeleccionCliente(); //le paso el archivo por parametro
 sTipo* RandomSeleccionClase(); //le paso el archivo por parametro

@@ -1,7 +1,7 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
-#include <encabezados.h>
-#include <tipo.h>
+#include "encabezados.h"
+#include "tipo.h"
 
 struct Cliente {
     unsigned int idCliente;

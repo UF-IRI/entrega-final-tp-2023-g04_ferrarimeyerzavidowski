@@ -52,10 +52,12 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase){
 }
 
 bool VerificarClase (sTipo* clase){
-    if (clase->nombreClase != "Spinning" && clase->nombreClase != "Yoga" && clase->nombreClase != "Pilates"  && clase->nombreClase != "Stretching" && clase->nombreClase !="Zumba" && clase->nombreClase !="Boxeo" && clase->nombreClase !="Musculacion"){
+    if(clase==nullptr)
+            return false;
+    else if (clase->nombreClase != "Spinning" && clase->nombreClase != "Yoga" && clase->nombreClase != "Pilates"  && clase->nombreClase != "Stretching" && clase->nombreClase !="Zumba" && clase->nombreClase !="Boxeo" && clase->nombreClase !="Musculacion"){
         //clase invalida
         return false;
-    }else{
-        return true;
     }
+
+    return true;
 }

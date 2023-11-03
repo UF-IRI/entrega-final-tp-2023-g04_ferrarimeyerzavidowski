@@ -1,9 +1,8 @@
 #ifndef ARCHIVOS_H
 #define ARCHIVOS_H
-#include <asistencia.h>
-#include <tipo.h>
-#include <cliente.h>
-#include <encabezados.h>
+#include "asistencia.h"
+#include "cliente.h"
+
 
 typedef enum codArchivos{ErrorApertura=-1, ErrorEscritura=0, ExitoOperacion=1,BorradoExitoso=2,ErrorBorrado=-2} eCodArchivos;
 

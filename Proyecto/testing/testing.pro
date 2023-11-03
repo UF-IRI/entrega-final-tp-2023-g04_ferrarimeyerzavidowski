@@ -15,7 +15,7 @@ SOURCES += \
     main.cpp \
     test_archivos.cpp \
     test_cliente.cpp \
-    tst_proyecto.cpp
+    test_gimnasio.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libreria/release/ -llibreria
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libreria/debug/ -llibreria

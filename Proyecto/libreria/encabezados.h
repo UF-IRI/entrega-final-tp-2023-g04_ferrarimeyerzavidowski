@@ -4,5 +4,5 @@ using namespace std;
 #include <iostream>
 #include <cmath>
 #include <fstream>
-#include <time.h>
+#include <ctime>
 #endif // ENCABEZADOS_H
