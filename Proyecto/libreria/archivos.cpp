@@ -1,6 +1,7 @@
 #include <archivos.h>
-eCodArchivos LeerClases(fstream *archi,sTipo* tipos)
+eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos)
 {
+
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;
 

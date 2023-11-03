@@ -9,6 +9,4 @@ TEST_CASE("Verificar clase"){
 
     bool a=VerificarClase(&tipo);
     REQUIRE(a==true);
-    REQUIRE(true==true);
-
 }
