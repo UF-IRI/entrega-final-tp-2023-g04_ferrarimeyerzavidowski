@@ -9,6 +9,8 @@ int main() {
     resizeTipos(tipos,N);
     LeerClases(&archivoclase,tipos);
     archivoclase.close();
+
+
     delete[] tipos;
     return 0;
 }

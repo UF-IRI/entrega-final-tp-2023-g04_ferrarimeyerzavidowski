@@ -1,7 +1,7 @@
-/*
+
 #include <catch2/catch.hpp>
-#include <cliente.h>
-#include <encabezados.h>
+#include <cliente.cpp>
+
 
 //OJO CAMBIE LA FUNCION
 TEST_CASE ("Estado de pago"){
@@ -12,7 +12,7 @@ TEST_CASE ("Estado de pago"){
     cliente->email = "martu@fava";
     cliente->telefono = "15432";
     cliente->estado=-30;
-
+    //averiguar como saber lo de numero random dentro de la funcion
     REQUIRE (cliente!=nullptr);
     SECTION("Estado neg"){
         EstadoCuenta(cliente);
@@ -20,4 +20,4 @@ TEST_CASE ("Estado de pago"){
     }
     delete cliente;
 }
-*/
+
