@@ -7,6 +7,7 @@ sCliente* RandomSeleccionCliente(); //le paso el archivo por parametro
 sTipo* RandomSeleccionClase(); //le paso el archivo por parametro
 bool YaInscriptoHorario(time_t horario,unsigned int idCliente);
 void resizeTipos(sTipo*& tipos, int &n);
+void resizeClientes(sCliente*&clientes, int &n);
 
 
 #endif // FUNCIONES_H

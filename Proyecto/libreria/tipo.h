@@ -16,4 +16,6 @@ struct Tipo{
     unsigned int cupoActual;
 };typedef struct Tipo sTipo;
 
+void Actualizar_estructura(sTipoLectura* tipolectura,sTipo* tipos); //le sumare los nuevos atributos de la estructura
+
 #endif // TIPO_H

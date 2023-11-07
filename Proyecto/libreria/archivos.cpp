@@ -12,17 +12,18 @@ eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos)
     string auxNombre;
     time_t auxhorario;
     char coma;
+    stringstream ss;
     int i=0;
 
-    while(*archi>>auxidClases>>coma>>auxNombre>>coma>>auxhorario){
+    while(*archi>>auxidClases>>coma>>auxNombre>>coma>>auxhorario){ //1 guard, 2do paso a int o float , si tengo timet tengo q hacer int y desp time t, desp guardp
         (tipos+i)->idClase=auxidClases;
         (tipos+i)->nombreClase=auxNombre;
-        (tipos+i)->horario=auxhorario;
+        (tipos+i)->horario=auxhorario; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
         i++;
     }
     return eCodArchivos::ExitoOperacion;
 }
-eCodArchivos LeerClientes(fstream *archi,sCliente *clientes)
+eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes)
 {
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;
@@ -41,7 +42,7 @@ eCodArchivos LeerClientes(fstream *archi,sCliente *clientes)
         (clientes+i)->apellido=auxap;
         (clientes+i)->email=auxnom;
         (clientes+i)->estado=auxest;
-        (clientes+i)->fechaNac=auxfecha;
+        (clientes+i)->fechaNac=auxfecha; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
         (clientes+i)->idCliente=auxid;
         (clientes+i)->nombre=auxnom;
         (clientes+i)->telefono=auxtel;
