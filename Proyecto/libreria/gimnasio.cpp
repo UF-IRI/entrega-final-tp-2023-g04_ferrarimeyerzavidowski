@@ -1,6 +1,6 @@
-#include <gimnasio.h>
+#include "gimnasio.h"
 
-eReserva Reserva(sCliente* cliente ,sTipo* clase){
+eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia){
 
     time_t horaInicioGym, horaFinGym;
     struct tm* tm_info; //de libreria
@@ -8,7 +8,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase){
     //vamos a hacer todo en seg, cada hora se simula como 1 seg
         //por eso se establece la hora de inicio a las 8 segundos.
     tm_info = localtime(&(clase->horario)); //la funcion localtime (libreria) va a desglosar una variable de time-t a la estructura de libreria
-    //& porque le paso la direc de memoria en donde se encuentra esa  clase
+    //& porque le paso la direc de memoria en donde se encuentra esa clase
     tm_info->tm_hour = 0;
     tm_info->tm_min = 0;
     tm_info->tm_sec = 8;
@@ -33,7 +33,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase){
     //datos correctos
 
     //verificar espacio disp
-    if("cupoactual==cupomax"){ //OJOOO NO TENGO COMO SABER EL CUPO ACTUAL PARA LA CLASE DE MAÑANA
+    if(clase->cupoActual>=clase->cupoMax){
         //no hay mas lugar
         return eReserva::CuposLlenos;
     }
@@ -41,14 +41,16 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase){
         //ver si esta endeudado
         bool x=EstadoCuenta(cliente); //ver si es & o sin nada
         if (x==false) //endeudado
-            eReserva::EnDeuda;
+            return eReserva::EnDeuda;
 
         //verifico si el usuario ya esta inscripto para otra clase en el mismo horario de inicio
-        bool esta=YaInscriptoHorario(clase->horario,cliente->idCliente);
-        if (esta==true) return eReserva::Superposicion;
-        //SUMARLO AL ARCHIVO DE INSCRIPCION
-        //AUMENTO CUPO ACTUAL !!!!!!!!
+        bool esta=YaInscriptoHorario(clase->horario,cliente->idCliente,asistPrevia);
+        if (esta==true)
+            return eReserva::Superposicion;
 
+        //si esta todo en orden entonces:
+        AgregarClienteArchivoInscri(cliente);
+        clase->cupoActual=clase->cupoActual+1; //incremento cupo
 }
 
 bool VerificarClase (sTipo* clase){
@@ -58,6 +60,5 @@ bool VerificarClase (sTipo* clase){
         //clase invalida
         return false;
     }
-
     return true;
 }

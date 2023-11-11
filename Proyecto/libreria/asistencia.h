@@ -2,6 +2,7 @@
 #define ASISTENCIA_H
 #include "encabezados.h"
 
+
 typedef struct {
     unsigned int idCurso;
     time_t fechaInscripcion;

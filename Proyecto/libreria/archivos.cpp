@@ -1,5 +1,6 @@
-#include <archivos.h>
-eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos)
+#include "archivos.h"
+
+eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos,int&n)
 {
 
     if(!archi->is_open())
@@ -16,6 +17,7 @@ eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos)
     int i=0;
 
     while(*archi>>auxidClases>>coma>>auxNombre>>coma>>auxhorario){ //1 guard, 2do paso a int o float , si tengo timet tengo q hacer int y desp time t, desp guardp
+        resizeTipos(tipos,n);
         (tipos+i)->idClase=auxidClases;
         (tipos+i)->nombreClase=auxNombre;
         (tipos+i)->horario=auxhorario; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
@@ -23,7 +25,7 @@ eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos)
     }
     return eCodArchivos::ExitoOperacion;
 }
-eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes)
+eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n)
 {
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;
@@ -39,6 +41,7 @@ eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes)
     int i=0;
 
     while(*archi>>auxid>>coma>>auxnom>>coma>>auxap>>coma>>auxem>>coma>>auxtel>>coma>>auxfecha>>coma>>auxest){
+        resizeClientes(clientes,n);
         (clientes+i)->apellido=auxap;
         (clientes+i)->email=auxnom;
         (clientes+i)->estado=auxest;
