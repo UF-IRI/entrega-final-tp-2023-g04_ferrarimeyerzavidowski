@@ -68,4 +68,9 @@ sTipo* RandomSeleccionClase(sTipo* tipos){
     sTipo* punteroSTipo = new sTipo{elementoSeleccionado.idClase, elementoSeleccionado.nombreClase, elementoSeleccionado.horario};
     return punteroSTipo;
 }
-
+sCliente* RandomSeleccionCliente(sCliente*Cliente){
+    int ClienteAleatorio = rand()%250+1;
+    sCliente& CleinteSeleccionado = Cliente[ClienteAleatorio];
+    sCliente* punteroSCliente = new sCliente{CleinteSeleccionado.idCliente, CleinteSeleccionado.nombre, CleinteSeleccionado.apellido, CleinteSeleccionado.email ,CleinteSeleccionado.telefono, CleinteSeleccionado.fechaNac, CleinteSeleccionado.estado};
+    return punteroSCliente;
+}

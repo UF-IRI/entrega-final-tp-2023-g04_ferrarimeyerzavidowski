@@ -4,7 +4,7 @@
 #include "cliente.h"
 #include "asistencia.h"
 
-sCliente* RandomSeleccionCliente(); //le paso el archivo por parametro
+sCliente* RandomSeleccionCliente(sCliente*Cliente); //le paso el archivo por parametro
 sTipo* RandomSeleccionClase(sTipo* tipos); //le paso el archivo por parametro
 bool YaInscriptoHorario(time_t horario,unsigned int idCliente,sAsistencia *asistPrevia);
 void resizeTipos(sTipoLectura*& tipos, int& n);
