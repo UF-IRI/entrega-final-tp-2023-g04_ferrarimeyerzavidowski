@@ -14,5 +14,5 @@ eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia);
 eCodArchivos EscribirAsistencia(fstream *archi,sAsistencia* asistencia); //sobreesribo el archivo con las cosas de archivo inscripcion; veriffico que no esten repetidos sino no copio
 eCodArchivos BorrarArchInscripcion(fstream* archi,sInscripcion* inscripcion); //lo limpio para el prox dia
 eCodArchivos EscribirInscripcion(fstream* archi,sInscripcion* inscripcion); //verifico que no este repetido sino no copio
-
+void copiar_archivo(sAsistencia* archi_inscripcion, sAsistencia* archi_asistencia);
 #endif // ARCHIVOS_H

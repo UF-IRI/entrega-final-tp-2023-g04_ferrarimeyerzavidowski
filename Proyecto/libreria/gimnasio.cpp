@@ -49,7 +49,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia){
             return eReserva::Superposicion;
 
         //si esta todo en orden entonces:
-        AgregarClienteArchivoInscri(cliente);
+        AgregarClienteArchivoInscri(cliente, asistPrevia);
         clase->cupoActual=clase->cupoActual+1; //incremento cupo
 }
 
@@ -61,4 +61,18 @@ bool VerificarClase (sTipo* clase){
         return false;
     }
     return true;
+}
+void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n){
+    //llamo a la funcion resize
+
+    int N;
+    N=(n)+1;
+    sAsistencia *aux= new sAsistencia [N];
+    for(int i=0;i<N-1;i++){
+        aux [i]= asistPrev [ i ];
+    }
+    aux[N] = cliente
+    delete [ ] asistPrev;
+    asistPrev = aux
+
 }

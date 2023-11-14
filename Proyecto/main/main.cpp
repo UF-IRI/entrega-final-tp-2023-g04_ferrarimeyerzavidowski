@@ -23,9 +23,11 @@ int main() {
     LeerClientes(&archivoclientes, clientes,n);
     Musculito.misClientes=clientes;
     archivoclientes.close();
-
-
-
+    int Nins=-1;
+    int Nas=-1;
+    sAsistencia* archi_inscripcion = new sAsistencia[Nins];
+    sAsistencia* archi_asistencia = new sAsistencia[Nas];
+    //funcion copiar uno a uno, recibo las dos listas de arriba y voy llamando al resize de archi_asistencia para copiar de una a otra
 
     delete[]clientes;
     delete[]tipos;

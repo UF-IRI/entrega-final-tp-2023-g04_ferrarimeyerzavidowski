@@ -62,3 +62,10 @@ int ClaseCupoMax(string nombreclase){
     }
     return false;
 }*/
+sTipo* RandomSeleccionClase(sTipo* tipos){
+    int IndiceAleatorio = rand()%60+1;
+    sTipo& elementoSeleccionado = tipos[IndiceAleatorio];
+    sTipo* punteroSTipo = new sTipo{elementoSeleccionado.idClase, elementoSeleccionado.nombreClase, elementoSeleccionado.horario};
+    return punteroSTipo;
+}
+

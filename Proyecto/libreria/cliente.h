@@ -2,6 +2,7 @@
 #define CLIENTE_H
 #include "encabezados.h"
 #include "tipo.h"
+#include "asistencia.h"
 
 struct Cliente {
     unsigned int idCliente;

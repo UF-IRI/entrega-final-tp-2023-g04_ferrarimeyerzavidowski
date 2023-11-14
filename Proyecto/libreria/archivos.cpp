@@ -101,5 +101,3 @@ eCodArchivos EscribirInscripcion(fstream* archi,sInscripcion* inscripcion){
 
     return eCodArchivos::ExitoOperacion;
 }
-
-

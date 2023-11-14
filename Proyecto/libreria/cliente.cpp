@@ -15,3 +15,6 @@ bool EstadoCuenta(sCliente* cliente)
     }
     return true; //no estuvo endeudado
 }
+sTipo* Inscribirse(){
+
+}
