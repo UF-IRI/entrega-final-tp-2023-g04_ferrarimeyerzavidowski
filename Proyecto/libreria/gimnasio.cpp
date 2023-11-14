@@ -1,6 +1,6 @@
 #include "gimnasio.h"
 
-eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia){
+eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n){
 
     time_t horaInicioGym, horaFinGym;
     struct tm* tm_info; //de libreria
@@ -49,7 +49,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia){
             return eReserva::Superposicion;
 
         //si esta todo en orden entonces:
-        AgregarClienteArchivoInscri(cliente, asistPrevia);
+        AgregarClienteArchivoInscri(cliente, asistPrevia,n,clase->idClase);
         clase->cupoActual=clase->cupoActual+1; //incremento cupo
 }
 
@@ -62,17 +62,42 @@ bool VerificarClase (sTipo* clase){
     }
     return true;
 }
-void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n){
-    //llamo a la funcion resize
+void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n,int idCurso){
+    int cont=0;
+    for (int i=0;i<n;i++) //si esta el cliente subido con otra clase
+    {
+        if(asistPrev[i].idCliente==cliente->idCliente){ //veo si esta
+            cont++;
+            asistPrev[i].cantInscriptos=asistPrev[i].cantInscriptos+1;
 
-    int N;
-    N=(n)+1;
-    sAsistencia *aux= new sAsistencia [N];
-    for(int i=0;i<N-1;i++){
-        aux [i]= asistPrev [ i ];
+            // Asignar memoria para el nuevo curso inscrito
+            asistPrev[i].CursosInscriptos = new sInscripcion[asistPrev[i].cantInscriptos];
+
+            // Asignar la fecha de inscripción y el ID del curso al nuevo curso inscrito
+            asistPrev[i].CursosInscriptos[asistPrev[i].cantInscriptos - 1].fechaInscripcion = time(0);
+            asistPrev[i].CursosInscriptos[asistPrev[i].cantInscriptos - 1].idCurso = idCurso;
+        }
+
     }
-    aux[N] = cliente
-    delete [ ] asistPrev;
-    asistPrev = aux
+    if (cont==0){//entonces no estaba hacer un lugarcito "bajoncito nuevo" para el
+        //planteo resize para darle lugar en memoria
 
+        int N;
+        N=(n)+1;
+        sAsistencia *aux= new sAsistencia [N];
+        for(int i=0;i<N-1;i++){
+            aux [i]= asistPrev [ i ];
+        }
+        asistPrev[N].cantInscriptos=asistPrev[N].cantInscriptos+1;
+
+        // Asignar memoria para el nuevo curso inscrito
+        asistPrev[N].CursosInscriptos = new sInscripcion[asistPrev[N].cantInscriptos];
+
+        // Asignar la fecha de inscripción y el ID del curso al nuevo curso inscrito
+        asistPrev[N].CursosInscriptos[asistPrev[N].cantInscriptos - 1].fechaInscripcion = time(0);
+        asistPrev[N].CursosInscriptos[asistPrev[N].cantInscriptos - 1].idCurso = idCurso;
+
+        delete [ ] asistPrev;
+        asistPrev = aux;
+    }
 }

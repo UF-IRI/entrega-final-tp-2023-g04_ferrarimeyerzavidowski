@@ -11,7 +11,7 @@ struct Gimnasio{
 enum ReservaCliente{ReservaExitosa=1,CuposLlenos=-1,Superposicion=-2,EnDeuda=-3,DatosIncorrectos=-5};
 typedef ReservaCliente eReserva;
 
-eReserva Reserva(sCliente* cliente ,sTipo* clase,sInscripcion* inscripcion);
-bool VerificarClase (sTipo* clase);
-
+eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n);
+bool VerificarClase(sTipo* clase);
+void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n,int idCurso);
 #endif // GIMNASIO_H
