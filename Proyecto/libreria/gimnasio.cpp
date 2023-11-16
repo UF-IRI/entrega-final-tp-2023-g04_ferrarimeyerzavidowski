@@ -42,15 +42,15 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n
         bool x=EstadoCuenta(cliente); //ver si es & o sin nada
         if (x==false) //endeudado
             return eReserva::EnDeuda;
-
         //verifico si el usuario ya esta inscripto para otra clase en el mismo horario de inicio
-        bool esta=YaInscriptoHorario(clase->horario,cliente->idCliente,asistPrevia);
+        bool esta=YaInscriptoHorario(clase->horario,cliente->idCliente,asistPrevia,n);
         if (esta==true)
             return eReserva::Superposicion;
 
         //si esta todo en orden entonces:
         AgregarClienteArchivoInscri(cliente, asistPrevia,n,clase->idClase);
         clase->cupoActual=clase->cupoActual+1; //incremento cupo
+        return eReserva::ReservaExitosa;
 }
 
 bool VerificarClase (sTipo* clase){

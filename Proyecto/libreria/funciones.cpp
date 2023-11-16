@@ -62,6 +62,19 @@ int ClaseCupoMax(string nombreclase){
     }
     return false;
 }*/
+bool YaInscriptoHorario(time_t horario, unsigned int idCliente, sAsistencia *asistPrevia, int n) {
+    for (int i = 0; i < n; ++i) {
+        sInscripcion *aux = asistPrevia[i].CursosInscriptos;
+
+        for (int j = 0; aux[j].fechaInscripcion != 0; ++j) {
+            if (asistPrevia[i].idCliente == idCliente && aux[j].fechaInscripcion == horario) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 sTipo* RandomSeleccionClase(sTipo* tipos){
     int IndiceAleatorio = rand()%60+1;
     sTipo& elementoSeleccionado = tipos[IndiceAleatorio];
