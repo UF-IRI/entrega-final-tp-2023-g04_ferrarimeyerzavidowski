@@ -28,8 +28,10 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n
     }
 
     bool ok=VerificarClase(clase);
-    if(ok==false)  return eReserva::DatosIncorrectos;
+    if(ok==false) {
 
+        return eReserva::DatosIncorrectos;
+    }
     //datos correctos
 
     //verificar espacio disp
@@ -46,11 +48,11 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n
         bool esta=YaInscriptoHorario(clase->horario,cliente->idCliente,asistPrevia,n);
         if (esta==true)
             return eReserva::Superposicion;
-
+/*
         //si esta todo en orden entonces:
         AgregarClienteArchivoInscri(cliente, asistPrevia,n,clase->idClase);
         clase->cupoActual=clase->cupoActual+1; //incremento cupo
-        return eReserva::ReservaExitosa;
+        return eReserva::ReservaExitosa;*/
 }
 
 bool VerificarClase (sTipo* clase){

@@ -49,19 +49,7 @@ int ClaseCupoMax(string nombreclase){
     return num;
 }
 
-/*bool YaInscriptoHorario(time_t horario,unsigned int idCliente,sAsistencia *asistPrevia,int N){
-    int tam=asistPrevia->size();
-    sInscripcion* aux=asistPrevia->CursosInscriptos;
-    int tamin=aux->length();
-    for (int i=0;i<tam;i++){ //recorro la lista asistPrevia
-        for(int j=0;j<tamin;j++){ //recorro la lista de cursosInscriptos
-            if(asistPrevia[i].idCliente == idCliente) //&& aux[j]==el horario)
-                //OJOOOO NO TENGO ACCESO AL HORARIO DE LAS CLASES DENTRO DE INSCRIPCION O ASISTENCIA!!!!!!!
-                return true;
-        }
-    }
-    return false;
-}*/
+
 bool YaInscriptoHorario(time_t horario, unsigned int idCliente, sAsistencia *asistPrevia, int n) {
     for (int i = 0; i < n; ++i) {
         sInscripcion *aux = asistPrevia[i].CursosInscriptos;
