@@ -6,7 +6,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n
     struct tm* tm_info; //de libreria
 
     //vamos a hacer todo en seg, cada hora se simula como 1 seg
-        //por eso se establece la hora de inicio a las 8 segundos.
+    //por eso se establece la hora de inicio a las 8 segundos.
     tm_info = localtime(&(clase->horario)); //la funcion localtime (libreria) va a desglosar una variable de time-t a la estructura de libreria
     //& porque le paso la direc de memoria en donde se encuentra esa clase
     tm_info->tm_hour = 0;

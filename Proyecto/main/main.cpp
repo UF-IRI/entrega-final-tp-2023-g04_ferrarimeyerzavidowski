@@ -1,7 +1,7 @@
 #include "encabezados.h"
-#include "archivos.cpp"
+#include "archivos.h"
 #include "gimnasio.h"
-#include "funciones.cpp"
+#include "funciones.h"
 
 int main() {
     ifstream archivoclase;
@@ -18,13 +18,12 @@ int main() {
 
     ifstream archivoclientes;
     archivoclientes.open("../entrega-final-tp-2023-g04_ferrarimeyerzavidowski/iriClientesGYM.csv");
-    int n= -1;
+    int n= 0;
     sCliente* clientes = new sCliente[n];
     LeerClientes(&archivoclientes, clientes,n);
     Musculito.misClientes=clientes;
     archivoclientes.close();
-    int Nins=-1;
-    int Nas=-1;
+    int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
     sAsistencia* archi_asistencia = new sAsistencia[Nas];
     //funcion copiar uno a uno, recibo las dos listas de arriba y voy llamando al resize de archi_asistencia para copiar de una a otra
