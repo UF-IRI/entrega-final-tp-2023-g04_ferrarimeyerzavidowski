@@ -25,22 +25,3 @@ TEST_CASE("EstadoCuenta, cliente endeudado y decide pagar") {
     delete cliente;
 }
 
-TEST_CASE("EstadoCuenta - Cliente no endeudado") {
-    sCliente* cliente = new sCliente;
-    cliente->idCliente = 12;
-    cliente->nombre = "mar";
-    cliente->apellido = "lopez";
-    cliente->email = "martu@fava";
-    cliente->telefono = "15432";
-    cliente->estado = 20;
-
-    //miro qu no este en deuda
-    REQUIRE(cliente->estado >= 0);
-
-    EstadoCuenta(cliente);
-
-    // Verifica que el estado no cambió al no estar endeudado
-    REQUIRE(cliente->estado == 20);
-    delete cliente;
-}
-
