@@ -1,6 +1,6 @@
 #ifndef ASISTENCIA_H
 #define ASISTENCIA_H
-#include "encabezados.h"
+#include "tipo.h" //incluye encabezado
 
 
 typedef struct {

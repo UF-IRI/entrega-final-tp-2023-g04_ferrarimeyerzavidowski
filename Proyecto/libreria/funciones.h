@@ -1,8 +1,8 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
-#include "cliente.h"
-#include "asistencia.h"
+#include "cliente.h" //incluye asistencia
+
 
 sCliente* RandomSeleccionCliente(sCliente*Cliente); //le paso el archivo por parametro
 sTipo* RandomSeleccionClase(sTipo* tipos); //le paso el archivo por parametro

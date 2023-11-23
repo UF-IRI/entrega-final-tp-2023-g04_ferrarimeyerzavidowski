@@ -5,4 +5,5 @@ using namespace std;
 #include <cmath>
 #include <fstream>
 #include <ctime>
+#include <sstream>
 #endif // ENCABEZADOS_H

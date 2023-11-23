@@ -1,8 +1,7 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
-#include "encabezados.h"
-#include "tipo.h"
-#include "asistencia.h"
+
+#include "asistencia.h" // incluye encabezados, tipos
 
 struct Cliente {
     unsigned int idCliente;

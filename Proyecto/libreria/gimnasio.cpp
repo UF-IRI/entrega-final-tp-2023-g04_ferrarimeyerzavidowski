@@ -1,4 +1,5 @@
 #include "gimnasio.h"
+#include "cliente.cpp"
 
 eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n){
 
@@ -41,7 +42,7 @@ eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n
     }
         //tengo lugar
         //ver si esta endeudado
-        bool x=EstadoCuenta(cliente); //ver si es & o sin nada
+        bool x = EstadoCuenta(cliente); //ver si es & o sin nada
         if (x==false) //endeudado
             return eReserva::EnDeuda;
         //verifico si el usuario ya esta inscripto para otra clase en el mismo horario de inicio
