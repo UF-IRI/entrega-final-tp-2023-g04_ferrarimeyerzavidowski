@@ -2,7 +2,7 @@
 #include <archivos.cpp>
 
 
-TEST_CASE("LeerClases con archivo CSV válido", "[LeerClases]") {
+/*TEST_CASE("LeerClases con archivo CSV válido", "[LeerClases]") {
 // Crear un archivo de prueba con datos conocidos
 std::ofstream archivo_prueba("archivo_prueba.csv");
 archivo_prueba << "1,Clase1,1637841600\n2,Clase2,1637845200\n";
@@ -31,7 +31,7 @@ REQUIRE(tipos[1].horario == 1637845200);
 
 // Cierra el archivo de prueba
 archivo_lectura.close();
-}
+}*/
 
 
 

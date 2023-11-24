@@ -11,69 +11,17 @@ void resizeTipos(sTipoLectura*& tipos, int& n) {
     tipos = aux;
 }
 
-// Función para leer clases desde un archivo CSV
-/*eCodArchivos LeerClases(ifstream* archi, sTipoLectura*& tipos, int& n) {
-    if (!archi->is_open()) {
-       return eCodArchivos::ErrorApertura;
+void resizeClientes(sCliente*& clientes, int& n) {
+    n++;
+    sCliente* aux = new sCliente[n];
+    for (int i = 0; i < n - 1; i++) {
+        aux[i] = clientes[i];
     }
-
-    string linea;
-    getline(*archi, linea);  // Leer la línea de encabezado y descartarla
-
-    while (getline(*archi, linea)) {
-        stringstream ss(linea);
-        char coma;
-
-        // Leer los campos de la línea
-        ss >> tipos[n].idClase >> coma >> tipos[n].nombreClase >> coma >> tipos[n].horario;
-
-        // Incrementar el contador
-        n++;
-
-        // Redimensionar el arreglo dinámico
-        resizeTipos(tipos, n);
-    }
-    return eCodArchivos::ExitoOperacion;
-}*/
-void resizeClientes(sCliente*&clientes, int &n){
-
-    n=(n)+1;
-    sCliente *cli= new sCliente [n];
-    for(int i=0;i<n-1;i++){
-        cli [i]= clientes [ i ];
-    }
-    delete [ ] clientes;
-    clientes = cli; //actualizas con los nuevos cambios
+    delete[] clientes;
+    clientes = aux;
 }
-/*eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n)
-{
-    if(!archi->is_open())
-        return eCodArchivos::ErrorApertura;
 
-    string header;
-    getline(*archi, header);
-
-    unsigned int auxid;
-    int auxest;
-    string auxap,auxnom,auxem,auxtel;
-    time_t auxfecha;
-    char coma;
-    int i=0;
-
-    while(*archi>>auxid>>coma>>auxnom>>coma>>auxap>>coma>>auxem>>coma>>auxtel>>coma>>auxfecha>>coma>>auxest){
-        resizeClientes(clientes,n);
-        (clientes+i)->apellido=auxap;
-        (clientes+i)->email=auxnom;
-        (clientes+i)->estado=auxest;
-        (clientes+i)->fechaNac=auxfecha; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
-        (clientes+i)->idCliente=auxid;
-        (clientes+i)->nombre=auxnom;
-        (clientes+i)->telefono=auxtel;
-        i++;
-    }
-    return eCodArchivos::ExitoOperacion;
-}
-eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia)
+/*eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia)
 {
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;

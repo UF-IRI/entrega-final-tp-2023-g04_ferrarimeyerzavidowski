@@ -3,6 +3,7 @@
 #include "gimnasio.cpp"
 
 int main() {
+
     ifstream archi;
     archi.open("iriClasesGYM.csv", ios::in);
     int N=0;
@@ -28,50 +29,37 @@ int main() {
         resizeTipos(tipos, N);
     }
     archi.close();
+
+    //leo el de clientes
     ifstream archi2;
     archi2.open("iriClientesGYM.csv", ios::in);
     int n=0;
-    sCliente *cli= new sCliente [n];
-    if(!archi2->is_open()){
-            return -1;
+    sCliente *clientes= new sCliente [n];
+    if (!archi2.is_open()) {
+        return eCodArchivos::ErrorApertura;
     }
-        string linea;
-        getline(archi, linea);
 
-        unsigned int auxid;
-        int auxest;
-        string auxap,auxnom,auxem,auxtel;
-        time_t auxfecha;
-        char coma;
-        int i=0;
+    std::string header;
+    getline(archi2, header);  // Leer la línea de encabezado y descartarla
 
-        while(*archi2>>auxid>>coma>>auxnom>>coma>>auxap>>coma>>auxem>>coma>>auxtel>>coma>>auxfecha>>coma>>auxest){
-            resizeClientes(clientes,n);
-            (clientes+i)->apellido=auxap;
-            (clientes+i)->email=auxnom;
-            (clientes+i)->estado=auxest;
-            (clientes+i)->fechaNac=auxfecha; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
-            (clientes+i)->idCliente=auxid;
-            (clientes+i)->nombre=auxnom;
-            (clientes+i)->telefono=auxtel;
-            i++;
+    while (!archi2.eof()) {
+        resizeClientes(clientes, n);
+        sCliente& nuevoCliente = clientes[n - 1];
+
+        archi >> nuevoCliente.idCliente >> nuevoCliente.nombre >> nuevoCliente.apellido >> nuevoCliente.email >> nuevoCliente.telefono >> nuevoCliente.fechaNac >> nuevoCliente.estado;
+
+        // Si el archivo aún no ha llegado al final, incrementar el contador
+        if (!archi.eof()) {
+            n++;
         }
-        return eCodArchivos::ExitoOperacion;
-
+    }
+    sGimnasio Musculito;
+    Musculito.misClases=tipos;
+    Musculito.misClientes=clientes;
 
     /*sTipo* tipos=new sTipo[N];
     Actualizar_estructura(tiposlectura,tipos,N);
     delete[] tiposlectura;
-    sGimnasio Musculito;
-    Musculito.misClases=tipos;
-
-    ifstream archivoclientes;
-    archivoclientes.open("iriClientesGYM.csv", ios::in);
-    int n= 0;
-    sCliente* clientes = new sCliente[n];
-    LeerClientes(&archivoclientes, clientes, n);
-    Musculito.misClientes=clientes;
-    archivoclientes.close();
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
     sAsistencia* archi_asistencia = new sAsistencia[Nas];
