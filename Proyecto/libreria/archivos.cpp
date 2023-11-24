@@ -12,7 +12,7 @@ void resizeTipos(sTipoLectura*& tipos, int& n) {
 }
 
 // Función para leer clases desde un archivo CSV
-eCodArchivos LeerClases(ifstream* archi, sTipoLectura*& tipos, int& n) {
+/*eCodArchivos LeerClases(ifstream* archi, sTipoLectura*& tipos, int& n) {
     if (!archi->is_open()) {
        return eCodArchivos::ErrorApertura;
     }
@@ -34,8 +34,17 @@ eCodArchivos LeerClases(ifstream* archi, sTipoLectura*& tipos, int& n) {
         resizeTipos(tipos, n);
     }
     return eCodArchivos::ExitoOperacion;
-}
+}*/
+void resizeClientes(sCliente*&clientes, int &n){
 
+    n=(n)+1;
+    sCliente *cli= new sCliente [n];
+    for(int i=0;i<n-1;i++){
+        cli [i]= clientes [ i ];
+    }
+    delete [ ] clientes;
+    clientes = cli; //actualizas con los nuevos cambios
+}
 /*eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n)
 {
     if(!archi->is_open())

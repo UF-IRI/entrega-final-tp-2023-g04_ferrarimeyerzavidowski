@@ -1,18 +1,6 @@
 #include "funciones.h"
 
 
-
-void resizeClientes(sCliente*&clientes, int &n){
-
-    n=(n)+1;
-    sCliente *cli= new sCliente [n];
-    for(int i=0;i<n-1;i++){
-        cli [i]= clientes [ i ];
-    }
-    delete [ ] clientes;
-    clientes = cli; //actualizas con los nuevos cambios
-}
-
 void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
     for (int i=0;i<N;i++)
     {//copio miembro a miembro porque no son la misma estructura

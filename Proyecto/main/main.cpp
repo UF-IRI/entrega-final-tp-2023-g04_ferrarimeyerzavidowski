@@ -28,7 +28,35 @@ int main() {
         resizeTipos(tipos, N);
     }
     archi.close();
+    ifstream archi2;
+    archi2.open("iriClientesGYM.csv", ios::in);
+    int n=0;
+    sCliente *cli= new sCliente [n];
+    if(!archi2->is_open()){
+            return -1;
+    }
+        string linea;
+        getline(archi, linea);
 
+        unsigned int auxid;
+        int auxest;
+        string auxap,auxnom,auxem,auxtel;
+        time_t auxfecha;
+        char coma;
+        int i=0;
+
+        while(*archi2>>auxid>>coma>>auxnom>>coma>>auxap>>coma>>auxem>>coma>>auxtel>>coma>>auxfecha>>coma>>auxest){
+            resizeClientes(clientes,n);
+            (clientes+i)->apellido=auxap;
+            (clientes+i)->email=auxnom;
+            (clientes+i)->estado=auxest;
+            (clientes+i)->fechaNac=auxfecha; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
+            (clientes+i)->idCliente=auxid;
+            (clientes+i)->nombre=auxnom;
+            (clientes+i)->telefono=auxtel;
+            i++;
+        }
+        return eCodArchivos::ExitoOperacion;
 
 
     /*sTipo* tipos=new sTipo[N];
