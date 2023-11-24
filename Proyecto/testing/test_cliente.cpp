@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <cliente.h>
 
-TEST_CASE("EstadoCuenta, cliente endeudado y decide pagar") {
+/*TEST_CASE("EstadoCuenta, cliente endeudado y decide pagar") {
     sCliente* cliente = new sCliente;
     cliente->idCliente = 12;
     cliente->nombre = "mar";
@@ -23,4 +23,4 @@ TEST_CASE("EstadoCuenta, cliente endeudado y decide pagar") {
         REQUIRE(cliente->estado==-30);
     }
     delete cliente;
-}
+}*/

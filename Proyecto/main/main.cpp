@@ -4,6 +4,7 @@
 #include "funciones.cpp"
 
 int main() {
+
     ifstream archi;
     archi.open("iriClasesGYM.csv", ios::in);
     int N = 0;
@@ -65,7 +66,6 @@ int main() {
     }
 
     archi2.close();
-
 
 
     sTipo* tiposNuevo=new sTipo[N];
