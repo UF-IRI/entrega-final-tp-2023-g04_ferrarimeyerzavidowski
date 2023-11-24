@@ -1,15 +1,36 @@
 
-#include "archivos.cpp" //tiene a gimnasio
-#include "funciones.cpp"
+#include "archivos.cpp"
 #include "gimnasio.cpp"
 
 int main() {
-    ifstream archivoclase;
-    archivoclase.open("iriClasesGYM.csv", ios::in);
+    ifstream archi;
+    archi.open("iriClasesGYM.csv", ios::in);
     int N=0;
-    sTipoLectura* tiposlectura=new sTipoLectura[N];
-    eCodArchivos a = LeerClases(&archivoclase, tiposlectura, N);
-    archivoclase.close();
+    sTipoLectura* tipos=new sTipoLectura[N];
+    if (!archi.is_open()) {
+        return -1;
+    }
+
+    string linea;
+    getline(archi, linea);  // Leer la línea de encabezado y descartarla
+
+    while (getline(archi, linea)) {
+        stringstream ss(linea);
+        char coma;
+
+        // Leer los campos de la línea
+        ss >> tipos[N].idClase >> coma >> tipos[N].nombreClase >> coma >> tipos[N].horario;
+
+        // Incrementar el contador
+        N++;
+
+        // Redimensionar el arreglo dinámico
+        resizeTipos(tipos, N);
+    }
+    archi.close();
+
+
+
     /*sTipo* tipos=new sTipo[N];
     Actualizar_estructura(tiposlectura,tipos,N);
     delete[] tiposlectura;
