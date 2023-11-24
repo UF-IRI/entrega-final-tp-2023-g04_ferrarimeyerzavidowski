@@ -8,9 +8,9 @@ int main() {
     archivoclase.open("iriClasesGYM.csv", ios::in);
     int N=0;
     sTipoLectura* tiposlectura=new sTipoLectura[N];
-    LeerClases(&archivoclase,tiposlectura,N);
+    eCodArchivos a = LeerClases(&archivoclase, tiposlectura, N);
     archivoclase.close();
-    sTipo* tipos=new sTipo[N];
+    /*sTipo* tipos=new sTipo[N];
     Actualizar_estructura(tiposlectura,tipos,N);
     delete[] tiposlectura;
     sGimnasio Musculito;
@@ -28,7 +28,7 @@ int main() {
     sAsistencia* archi_asistencia = new sAsistencia[Nas];
     //funcion copiar uno a uno, recibo las dos listas de arriba y voy llamando al resize de archi_asistencia para copiar de una a otra
     delete[] clientes;
-    delete[] tipos;
+    delete[] tipos;*/
 
     return 0;
 }

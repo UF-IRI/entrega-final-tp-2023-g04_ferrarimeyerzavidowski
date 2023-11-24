@@ -1,31 +1,42 @@
 #include "archivos.h"
 
-eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos,int&n)
-{
+// Función para redimensionar el arreglo dinámico
+void resizeTipos(sTipoLectura*& tipos, int& n) {
+    n++;
+    sTipoLectura* aux = new sTipoLectura[n];
+    for (int i = 0; i < n - 1; i++) {
+        aux[i] = tipos[i];
+    }
+    delete[] tipos;
+    tipos = aux;
+}
 
-    if(!archi->is_open())
-        return eCodArchivos::ErrorApertura;
+// Función para leer clases desde un archivo CSV
+eCodArchivos LeerClases(ifstream* archi, sTipoLectura*& tipos, int& n) {
+    if (!archi->is_open()) {
+       return eCodArchivos::ErrorApertura;
+    }
 
-    string header;
-    getline(*archi, header);
+    string linea;
+    getline(*archi, linea);  // Leer la línea de encabezado y descartarla
 
-    unsigned int auxidClases;
-    string auxNombre;
-    time_t auxhorario;
-    char coma;
-    stringstream ss;
-    int i=0;
+    while (getline(*archi, linea)) {
+        stringstream ss(linea);
+        char coma;
 
-    while(*archi>>auxidClases>>coma>>auxNombre>>coma>>auxhorario){ //1 guard, 2do paso a int o float , si tengo timet tengo q hacer int y desp time t, desp guardp
-        resizeTipos(tipos,n);
-        (tipos+i)->idClase=auxidClases;
-        (tipos+i)->nombreClase=auxNombre;
-        (tipos+i)->horario=auxhorario; //OJOOOO VERIFICAR SI SE ESTA GUARDANDO BIEN COMO VARIABLE TIME-T, SINO HACER UNA FUNCION APARTE
-        i++;
+        // Leer los campos de la línea
+        ss >> tipos[n].idClase >> coma >> tipos[n].nombreClase >> coma >> tipos[n].horario;
+
+        // Incrementar el contador
+        n++;
+
+        // Redimensionar el arreglo dinámico
+        resizeTipos(tipos, n);
     }
     return eCodArchivos::ExitoOperacion;
 }
-eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n)
+
+/*eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n)
 {
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;
@@ -100,4 +111,4 @@ eCodArchivos EscribirInscripcion(fstream* archi,sInscripcion* inscripcion){
     archi->write((char*)inscripcion, sizeof(sInscripcion));
 
     return eCodArchivos::ExitoOperacion;
-}
+}*/

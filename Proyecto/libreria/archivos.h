@@ -6,7 +6,6 @@
 
 
 typedef enum codArchivos{ErrorApertura=-1, ErrorEscritura=0, ExitoOperacion=1,BorradoExitoso=2,ErrorBorrado=-2} eCodArchivos;
-
 eCodArchivos LeerClases(ifstream *archi,sTipoLectura* tipos,int&n);
 eCodArchivos LeerClientes(ifstream *archi,sCliente *clientes, int&n);
 eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia);
