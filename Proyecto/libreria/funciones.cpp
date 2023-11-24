@@ -1,4 +1,5 @@
 #include "funciones.h"
+#include <iomanip>
 
 
 void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
@@ -11,6 +12,22 @@ void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
         int cupos_max= ClaseCupoMax(tiposlectura[i].nombreClase); //en base a que clase es veo cual es el cupo max
         tipos[i].cupoMax=cupos_max;
     }
+}
+// Función para convertir una cadena de fecha en formato específico a time_t
+time_t ConvertirFechaATime_t(const std::string& fechaStr) {
+    // Define la estructura para almacenar la fecha y hora
+    std::tm tm = {};
+
+    // Crea un objeto stringstream para procesar la cadena
+    std::istringstream iss(fechaStr);
+
+    // Define el formato de la cadena de fecha y hora
+    iss >> std::get_time(&tm, "%Y-%m-%d"); // Ajusta el formato según tu necesidad
+
+    // Convierte la estructura tm a time_t
+    time_t tiempo = std::mktime(&tm);
+
+    return tiempo;
 }
 int ClaseCupoMax(string nombreclase){
     int num=0;

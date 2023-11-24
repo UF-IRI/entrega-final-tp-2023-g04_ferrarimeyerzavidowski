@@ -1,13 +1,13 @@
 
 #include "archivos.cpp"
 #include "gimnasio.cpp"
+#include "funciones.cpp"
 
 int main() {
-
     ifstream archi;
     archi.open("iriClasesGYM.csv", ios::in);
-    int N=0;
-    sTipoLectura* tipos=new sTipoLectura[N];
+    int N = 0;
+    sTipoLectura* tipos = new sTipoLectura[N];
     if (!archi.is_open()) {
         return -1;
     }
@@ -16,7 +16,10 @@ int main() {
     getline(archi, linea);  // Leer la línea de encabezado y descartarla
 
     while (getline(archi, linea)) {
-        stringstream ss(linea);
+        // Redimensionar el arreglo dinámico
+        resizeTipos(tipos, N);
+
+        stringstream ss(linea);  // Asignar la línea al stringstream
         char coma;
 
         // Leer los campos de la línea
@@ -24,42 +27,55 @@ int main() {
 
         // Incrementar el contador
         N++;
-
-        // Redimensionar el arreglo dinámico
-        resizeTipos(tipos, N);
     }
     archi.close();
 
-    //leo el de clientes
     ifstream archi2;
     archi2.open("iriClientesGYM.csv", ios::in);
-    int n=0;
-    sCliente *clientes= new sCliente [n];
+    int n = 0;
+    sCliente* clientes = new sCliente[n];
     if (!archi2.is_open()) {
-        return eCodArchivos::ErrorApertura;
+        return -1;
     }
 
-    std::string header;
+    string header;
     getline(archi2, header);  // Leer la línea de encabezado y descartarla
 
-    while (!archi2.eof()) {
+    char coma = ',';  // Separador
+    string line;
+    while (getline(archi2, line)) {
         resizeClientes(clientes, n);
-        sCliente& nuevoCliente = clientes[n - 1];
 
-        archi >> nuevoCliente.idCliente >> nuevoCliente.nombre >> nuevoCliente.apellido >> nuevoCliente.email >> nuevoCliente.telefono >> nuevoCliente.fechaNac >> nuevoCliente.estado;
+        std::stringstream iss(line);
+        sCliente& nuevoCliente = clientes[n];  // Corregir el acceso al nuevo cliente
 
-        // Si el archivo aún no ha llegado al final, incrementar el contador
-        if (!archi.eof()) {
-            n++;
-        }
+        // Lee los campos de la línea
+        iss >> nuevoCliente.idCliente >> coma;
+        getline(iss, nuevoCliente.nombre, coma);  //ACA SALTA EL ERROR
+        getline(iss, nuevoCliente.apellido, coma);
+        getline(iss, nuevoCliente.email, coma);
+        getline(iss, nuevoCliente.telefono, coma);
+        string fechaNacStr;
+        iss >> fechaNacStr >> coma;
+        nuevoCliente.fechaNac = ConvertirFechaATime_t(fechaNacStr);
+        iss >> nuevoCliente.estado >> coma;
+
+        // Incrementar el contador
+        n++;
     }
+
+    archi2.close();
+
+
+
+    sTipo* tiposNuevo=new sTipo[N];
+    Actualizar_estructura(tipos,tiposNuevo,N);
+    delete[] tipos;
     sGimnasio Musculito;
-    Musculito.misClases=tipos;
+    Musculito.misClases=tiposNuevo;
     Musculito.misClientes=clientes;
 
-    /*sTipo* tipos=new sTipo[N];
-    Actualizar_estructura(tiposlectura,tipos,N);
-    delete[] tiposlectura;
+    /*
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
     sAsistencia* archi_asistencia = new sAsistencia[Nas];
