@@ -75,12 +75,23 @@ sCliente* RandomSeleccionCliente(sCliente*Cliente){
 
 void copiar_archivo(sAsistencia* archi_inscripcion, sAsistencia*& archi_asistencia,int& nasist)
 {
-    for (int i = 0; i < tamaño_asistencia; ++i) {
+    for (int i = 0; i < nasist; ++i) {
         // Verifica si es necesario redimensionar archi_asistencia
-        if (i >= tamaño_asistencia)
+        if (i >= nasist)
             resizeAsist(archi_asistencia,nasist);
 
        // Copiar los datos desde archi_inscripcion a archi_asistencia
         archi_asistencia[i] = archi_inscripcion[i];
     }
+}
+
+void resizeAsist(sAsistencia*& asistencia, int &n)
+{
+    n++;
+    sAsistencia* aux = new sAsistencia[n];
+    for (int i = 0; i < n - 1; i++) {
+        aux[i] = asistencia[i];
+    }
+    delete[]asistencia;
+    asistencia = aux;
 }

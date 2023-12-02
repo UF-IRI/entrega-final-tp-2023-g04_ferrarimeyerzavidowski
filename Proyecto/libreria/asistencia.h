@@ -13,7 +13,7 @@ typedef struct {
     sInscripcion* CursosInscriptos;
 } sAsistencia;
 
-void resizeAsist(sAsistencia*& asistencia, int &n);
+
 
 
 #endif // ASISTENCIA_H
