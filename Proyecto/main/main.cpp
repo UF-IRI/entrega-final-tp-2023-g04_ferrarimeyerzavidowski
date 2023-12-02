@@ -3,6 +3,7 @@
 #include "gimnasio.cpp"
 #include "funciones.cpp"
 
+
 int main() {
 
     ifstream archi2;
@@ -12,7 +13,6 @@ int main() {
     if (!archi2.is_open()) {
         return -1;
     }
-
     string header;
     getline(archi2, header);  // Leer la línea de encabezado y descartarla
 
@@ -22,16 +22,16 @@ int main() {
         resizeClientes(clientes, n);
         sCliente nuevoCliente;
         std::stringstream iss(line);
-        //sCliente* nuevoCliente = &clientes[n];  // Corregir el acceso al nuevo cliente
         string auxn,auxa,auxe,auxtel;
+
         // Lee los campos de la línea
         iss >> nuevoCliente.idCliente >> coma;
-        getline(iss, auxn, coma);  //ACA SALTA EL ERROR
+        getline(iss, auxn, coma);
         getline(iss, auxa, coma);
         getline(iss, auxe, coma);
         getline(iss, auxtel, coma);
         string fechaNacStr;
-        iss >> fechaNacStr >> coma;
+        getline(iss, fechaNacStr, coma);
         nuevoCliente.fechaNac = ConvertirFechaATime_t(fechaNacStr);
         iss >>nuevoCliente.estado >> coma;
         nuevoCliente.nombre=auxn;
@@ -39,35 +39,36 @@ int main() {
         nuevoCliente.email=auxe;
         nuevoCliente.telefono=auxtel;
         clientes[n-1]=nuevoCliente;
-
-        // Incrementar el contador
-
     }
-
     archi2.close();
+
 
     ifstream archi;
     archi.open("iriClasesGYM.csv", ios::in);
     int N = 0;
-    sTipoLectura* tipos = new sTipoLectura[N];
+    sTipoLectura* tipos = nullptr;
     if (!archi.is_open()) {
         return -1;
     }
+    string header1;
+    getline(archi, header1);  // Leer la línea de encabezado y descartarla
 
-    string linea;
-    getline(archi, linea);  // Leer la línea de encabezado y descartarla
+    //la variable de la coma y el string line fueron definidos e inicializados
 
-    while (getline(archi, linea)) {
-        // Redimensionar el arreglo dinámico
-        resizeTipos(tipos, N);
-        stringstream ss(linea);  // Asignar la línea al stringstream
-        char coma;
+    while (getline(archi, line)) {
+        resizeTipos(tipos, N); // Redimensionar
+        sTipoLectura nuevoTipo;
+        std::stringstream iss(line);
+        string auxin,auxih;
 
         // Leer los campos de la línea
-        ss >> tipos[N].idClase >> coma >> tipos[N].nombreClase >> coma >> tipos[N].horario;
-
-        // Incrementar el contador
-
+        iss>>nuevoTipo.idClase>>coma;
+        getline(iss,auxin,coma);
+        string HorarioStr;
+        getline(iss,HorarioStr, coma);
+        nuevoTipo.horario=ConvertirFechaATime_t(HorarioStr);;
+        nuevoTipo.nombreClase=auxin;
+        tipos[N-1]=nuevoTipo;
     }
     archi.close();
 
@@ -78,13 +79,27 @@ int main() {
     Musculito.misClases=tiposNuevo;
     Musculito.misClientes=clientes;
 
-    /*
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
+
+    int PersonasAInscribirse=5;
+    for(int i=0 ; i<PersonasAInscribirse ;i++){
+        sCliente* clienteActual=RandomSeleccionCliente(clientes);
+        sTipo* ClaseElegida=Inscribirse(tiposNuevo,N);
+        eReserva reserva= Reserva(clienteActual,ClaseElegida,archi_inscripcion,Nins);
+
+        std::cout<<"La Reserva fue"<<reserva<<",para el cliente con id:"<<clienteActual->idCliente<<endl;
+    }
+
+    //"termino las reservas", lo paso a archivo de asistencia
     sAsistencia* archi_asistencia = new sAsistencia[Nas];
-    //funcion copiar uno a uno, recibo las dos listas de arriba y voy llamando al resize de archi_asistencia para copiar de una a otra
+    copiar_archivo(archi_inscripcion,archi_asistencia,Nas);
+
+
     delete[] clientes;
-    delete[] tipos;*/
+    delete[] tiposNuevo;
+    delete[] archi_inscripcion;
+    delete[] archi_asistencia;
 
     return 0;
 }

@@ -2,6 +2,7 @@
 #include <iomanip>
 
 
+
 void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
     for (int i=0;i<N;i++)
     {//copio miembro a miembro porque no son la misma estructura
@@ -15,14 +16,17 @@ void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
 }
 // Función para convertir una cadena de fecha en formato específico a time_t
 time_t ConvertirFechaATime_t(const std::string& fechaStr) {
-    // Define la estructura para almacenar la fecha y hora
     std::tm tm = {};
 
-    // Crea un objeto stringstream para procesar la cadena
     std::istringstream iss(fechaStr);
+    char dash;  // Variable para almacenar el guion entre los componentes de la fecha
 
-    // Define el formato de la cadena de fecha y hora
-    iss >> std::get_time(&tm, "%Y-%m-%d"); // Ajusta el formato según tu necesidad
+    // Lee los componentes de la fecha directamente
+    iss >> tm.tm_mday >> dash >> tm.tm_mon >> dash >> tm.tm_year;
+
+    // Ajusta los componentes de la estructura tm
+    tm.tm_mon -= 1;  // Los meses en std::tm comienzan desde 0
+    tm.tm_year -= 1900;  // Ajusta el año según el estándar de std::tm
 
     // Convierte la estructura tm a time_t
     time_t tiempo = std::mktime(&tm);
@@ -61,15 +65,22 @@ bool YaInscriptoHorario(time_t horario, unsigned int idCliente, sAsistencia *asi
     return false;
 }
 
-sTipo* RandomSeleccionClase(sTipo* tipos){
-    int IndiceAleatorio = rand()%60+1;
-    sTipo& elementoSeleccionado = tipos[IndiceAleatorio];
-    sTipo* punteroSTipo = new sTipo{elementoSeleccionado.idClase, elementoSeleccionado.nombreClase, elementoSeleccionado.horario};
-    return punteroSTipo;
-}
+
 sCliente* RandomSeleccionCliente(sCliente*Cliente){
     int ClienteAleatorio = rand()%250+1;
     sCliente& CleinteSeleccionado = Cliente[ClienteAleatorio];
     sCliente* punteroSCliente = new sCliente{CleinteSeleccionado.idCliente, CleinteSeleccionado.nombre, CleinteSeleccionado.apellido, CleinteSeleccionado.email ,CleinteSeleccionado.telefono, CleinteSeleccionado.fechaNac, CleinteSeleccionado.estado};
     return punteroSCliente;
+}
+
+void copiar_archivo(sAsistencia* archi_inscripcion, sAsistencia*& archi_asistencia,int& nasist)
+{
+    for (int i = 0; i < tamaño_asistencia; ++i) {
+        // Verifica si es necesario redimensionar archi_asistencia
+        if (i >= tamaño_asistencia)
+            resizeAsist(archi_asistencia,nasist);
+
+       // Copiar los datos desde archi_inscripcion a archi_asistencia
+        archi_asistencia[i] = archi_inscripcion[i];
+    }
 }

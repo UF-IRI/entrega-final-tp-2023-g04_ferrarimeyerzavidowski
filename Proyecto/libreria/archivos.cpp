@@ -21,7 +21,7 @@ void resizeClientes(sCliente*& clientes, int& n) {
     clientes = aux;
 }
 
-/*eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia)
+eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia)
 {
     if(!archi->is_open())
         return eCodArchivos::ErrorApertura;
@@ -68,4 +68,4 @@ eCodArchivos EscribirInscripcion(fstream* archi,sInscripcion* inscripcion){
     archi->write((char*)inscripcion, sizeof(sInscripcion));
 
     return eCodArchivos::ExitoOperacion;
-}*/
+}
