@@ -24,12 +24,8 @@ time_t ConvertirFechaATime_t(const std::string& fechaStr) {
     // Lee los componentes de la fecha directamente
     iss >> tm.tm_mday >> dash >> tm.tm_mon >> dash >> tm.tm_year;
 
-    // Ajusta los componentes de la estructura tm
-    tm.tm_mon -= 1;  // Los meses en std::tm comienzan desde 0
-    tm.tm_year -= 1900;  // Ajusta el año según el estándar de std::tm
-
     // Convierte la estructura tm a time_t
-    time_t tiempo = std::mktime(&tm);
+    time_t tiempo = mktime(&tm);
 
     return tiempo;
 }

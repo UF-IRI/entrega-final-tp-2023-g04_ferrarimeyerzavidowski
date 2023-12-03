@@ -82,7 +82,7 @@ int main() {
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
 
-    int PersonasAInscribirse=5;
+    int PersonasAInscribirse=1;
     for(int i=0 ; i<PersonasAInscribirse ;i++){
         sCliente* clienteActual=RandomSeleccionCliente(clientes);
         sTipo* ClaseElegida=Inscribirse(tiposNuevo,N);
