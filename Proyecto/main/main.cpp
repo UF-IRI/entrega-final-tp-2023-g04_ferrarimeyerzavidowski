@@ -81,7 +81,7 @@ int main() {
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
 
     int PersonasAInscribirse=5;
-    for(int i=0 ; i<5;i++){
+    for(int i=0 ; i<PersonasAInscribirse;i++){
         sCliente* clienteActual=RandomSeleccionCliente(clientes);
         sTipo* ClaseElegida=Inscribirse(tiposNuevo,N);
         eReserva reserva= Reserva(clienteActual,ClaseElegida,archi_inscripcion,Nins);

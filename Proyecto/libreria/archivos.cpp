@@ -35,23 +35,7 @@ eCodArchivos LeerAsistencia(fstream * archi,sAsistencia* asistencia)
 
     return eCodArchivos::ExitoOperacion;
 }
-eCodArchivos BorrarArchInscripcion(fstream* archi,sInscripcion* inscripcion){
-    if (!archi->is_open()) {
-        return eCodArchivos::ErrorApertura;
-    }
 
-    // Cierra el archivo para evitar problemas al truncarlo
-    archi->close();
-
-    // Abre el archivo en modo de escritura con truncamiento
-    archi->open("asistencia.dat", std::ios::binary | std::ios::out | std::ios::trunc);
-
-    if (archi->is_open()) {
-        // El archivo se ha truncado con éxito y está vacío
-        return eCodArchivos::BorradoExitoso;
-    } else
-        return eCodArchivos::ErrorBorrado;
-}
 eCodArchivos EscribirAsistencia(fstream *archi,sAsistencia* asistencia){
 
     if(!archi->is_open())
