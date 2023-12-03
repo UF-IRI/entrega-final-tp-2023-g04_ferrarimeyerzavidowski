@@ -9,7 +9,6 @@ CONFIG += c++17
 
 SOURCES += \
     archivos.cpp \
-    asistencia.cpp \
     cliente.cpp \
     funciones.cpp \
     gimnasio.cpp \

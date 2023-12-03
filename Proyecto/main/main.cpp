@@ -59,14 +59,12 @@ int main() {
         resizeTipos(tipos, N); // Redimensionar
         sTipoLectura nuevoTipo;
         std::stringstream iss(line);
-        string auxin,auxih;
+        string auxin;
 
         // Leer los campos de la línea
         iss>>nuevoTipo.idClase>>coma;
         getline(iss,auxin,coma);
-        string HorarioStr;
-        getline(iss,HorarioStr, coma);
-        nuevoTipo.horario=ConvertirFechaATime_t(HorarioStr);;
+        iss>>nuevoTipo.horario>>coma;
         nuevoTipo.nombreClase=auxin;
         tipos[N-1]=nuevoTipo;
     }
@@ -82,8 +80,8 @@ int main() {
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
 
-    int PersonasAInscribirse=1;
-    for(int i=0 ; i<PersonasAInscribirse ;i++){
+    int PersonasAInscribirse=5;
+    for(int i=0 ; i<5;i++){
         sCliente* clienteActual=RandomSeleccionCliente(clientes);
         sTipo* ClaseElegida=Inscribirse(tiposNuevo,N);
         eReserva reserva= Reserva(clienteActual,ClaseElegida,archi_inscripcion,Nins);

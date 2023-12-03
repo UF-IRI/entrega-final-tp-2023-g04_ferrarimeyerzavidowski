@@ -14,6 +14,4 @@ typedef struct {
 } sAsistencia;
 
 
-
-
 #endif // ASISTENCIA_H

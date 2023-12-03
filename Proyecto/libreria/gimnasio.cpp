@@ -3,31 +3,6 @@
 
 eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n){
 
-    time_t horaInicioGym, horaFinGym;
-    struct tm* tm_info; //de libreria
-
-    //vamos a hacer todo en seg, cada hora se simula como 1 seg
-    //por eso se establece la hora de inicio a las 8 segundos.
-    tm_info = localtime(&(clase->horario)); //la funcion localtime (libreria) va a desglosar una variable de time-t a la estructura de libreria
-    //& porque le paso la direc de memoria en donde se encuentra esa clase
-    tm_info->tm_hour = 0;
-    tm_info->tm_min = 0;
-    tm_info->tm_sec = 8;
-    horaInicioGym = mktime(tm_info); //paso de la struct tm a una variable de time-t
-
-    //ahora cuando cierra (19 hs)
-    tm_info->tm_hour = 0;
-    tm_info->tm_min = 0;
-    tm_info->tm_sec = 19;
-    horaFinGym = mktime(tm_info);
-
-    //verificamos ingreso de datos (sean validos)
-    if (clase->horario < horaInicioGym && clase->horario > horaFinGym) {
-        // El horario está entre las 8 y las 19 segundos.
-        // Puedes continuar con la reserva.
-        return eReserva::DatosIncorrectos;
-    }
-
     bool ok=VerificarClase(clase);
     if(ok==false) {
 
