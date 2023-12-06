@@ -23,7 +23,7 @@ int main() {
         sCliente nuevoCliente;
         std::stringstream iss(line);
         string auxn,auxa,auxe,auxtel;
-
+        time_t fechaNaci;
         // Lee los campos de la línea
         iss >> nuevoCliente.idCliente >> coma;
         getline(iss, auxn, coma);
@@ -32,12 +32,13 @@ int main() {
         getline(iss, auxtel, coma);
         string fechaNacStr;
         getline(iss, fechaNacStr, coma);
-        nuevoCliente.fechaNac = ConvertirFechaATime_t(fechaNacStr);
+        fechaNaci = ConvertirFechaATime_t(fechaNacStr);
         iss >>nuevoCliente.estado >> coma;
         nuevoCliente.nombre=auxn;
         nuevoCliente.apellido=auxa;
         nuevoCliente.email=auxe;
         nuevoCliente.telefono=auxtel;
+        nuevoCliente.fechaNac=fechaNaci;
         clientes[n-1]=nuevoCliente;
     }
     archi2.close();
