@@ -40,7 +40,7 @@ bool VerificarClase (sTipo* clase){
     }
     return true;
 }
-void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n,int idCurso){
+void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia*& asistPrev, int& n,int idCurso){
     int cont=0;
     for (int i=0;i<n;i++) //si esta el cliente subido con otra clase
     {
@@ -66,14 +66,14 @@ void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int
         for(int i=0;i<N-1;i++){
             aux [i]= asistPrev [ i ];
         }
-        aux[N].cantInscriptos=asistPrev[N].cantInscriptos+1;
+        aux[N-1].cantInscriptos=1;
 
         // Asignar memoria para el nuevo curso inscrito
-        aux[N].CursosInscriptos = new sInscripcion[aux[N].cantInscriptos];
+        aux[N-1].CursosInscriptos = new sInscripcion[aux[N-1].cantInscriptos];
 
         // Asignar la fecha de inscripción y el ID del curso al nuevo curso inscrito
-        aux[N].CursosInscriptos[aux[N].cantInscriptos - 1].fechaInscripcion = time(0);
-        aux[N].CursosInscriptos[aux[N].cantInscriptos - 1].idCurso = idCurso;
+        aux[N-1].CursosInscriptos[aux[N-1].cantInscriptos - 1].fechaInscripcion = time(0);
+        aux[N-1].CursosInscriptos[aux[N-1].cantInscriptos - 1].idCurso = idCurso;
 
         delete [ ] asistPrev;
         asistPrev = aux;

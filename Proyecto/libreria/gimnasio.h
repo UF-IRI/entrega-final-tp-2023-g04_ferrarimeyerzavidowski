@@ -13,5 +13,5 @@ typedef ReservaCliente eReserva;
 
 eReserva Reserva(sCliente* cliente ,sTipo* clase,sAsistencia* asistPrevia,int &n);
 bool VerificarClase(sTipo* clase);
-void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int& n,int idCurso);
+void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia*& asistPrev, int& n,int idCurso);
 #endif // GIMNASIO_H
