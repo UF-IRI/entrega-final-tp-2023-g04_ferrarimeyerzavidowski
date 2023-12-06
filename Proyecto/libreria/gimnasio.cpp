@@ -66,14 +66,14 @@ void AgregarClienteArchivoInscri(sCliente*& cliente, sAsistencia* asistPrev, int
         for(int i=0;i<N-1;i++){
             aux [i]= asistPrev [ i ];
         }
-        asistPrev[N].cantInscriptos=asistPrev[N].cantInscriptos+1;
+        aux[N].cantInscriptos=asistPrev[N].cantInscriptos+1;
 
         // Asignar memoria para el nuevo curso inscrito
-        asistPrev[N].CursosInscriptos = new sInscripcion[asistPrev[N].cantInscriptos];
+        aux[N].CursosInscriptos = new sInscripcion[aux[N].cantInscriptos];
 
         // Asignar la fecha de inscripción y el ID del curso al nuevo curso inscrito
-        asistPrev[N].CursosInscriptos[asistPrev[N].cantInscriptos - 1].fechaInscripcion = time(0);
-        asistPrev[N].CursosInscriptos[asistPrev[N].cantInscriptos - 1].idCurso = idCurso;
+        aux[N].CursosInscriptos[aux[N].cantInscriptos - 1].fechaInscripcion = time(0);
+        aux[N].CursosInscriptos[aux[N].cantInscriptos - 1].idCurso = idCurso;
 
         delete [ ] asistPrev;
         asistPrev = aux;

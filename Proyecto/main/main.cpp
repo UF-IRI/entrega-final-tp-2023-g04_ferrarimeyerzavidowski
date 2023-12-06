@@ -7,7 +7,7 @@
 int main() {
 
     ifstream archi2;
-    archi2.open("iriClientesGYM.csv", ios::in);
+     archi2.open("C:/Users/zavid/OneDrive/Escritorio/archivoos/entrega-final-tp-2023-g04_ferrarimeyerzavidowski/iriClientesGYM.csv", ios::in);
     int n = 0;
     sCliente* clientes = nullptr;
     if (!archi2.is_open()) {
@@ -45,7 +45,7 @@ int main() {
 
 
     ifstream archi;
-    archi.open("iriClasesGYM.csv", ios::in);
+    archi.open("C:/Users/zavid/OneDrive/Escritorio/archivoos/entrega-final-tp-2023-g04_ferrarimeyerzavidowski/iriClasesGYM.csv", ios::in);
     int N = 0;
     sTipoLectura* tipos = nullptr;
     if (!archi.is_open()) {
