@@ -1,8 +1,6 @@
 #include "funciones.h"
 #include <iomanip>
 
-
-
 void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
     for (int i=0;i<N;i++)
     {//copio miembro a miembro porque no son la misma estructura
