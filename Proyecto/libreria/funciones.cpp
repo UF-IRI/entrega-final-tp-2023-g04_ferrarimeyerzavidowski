@@ -1,5 +1,6 @@
 #include "funciones.h"
 #include <iomanip>
+#include <QRandomGenerator>
 
 void Actualizar_estructura(sTipoLectura*tiposlectura,sTipo*tipos,int N){
     for (int i=0;i<N;i++)
@@ -73,7 +74,8 @@ bool YaInscriptoHorario(time_t horario, unsigned int idCliente, sAsistencia *asi
 
 
 sCliente* RandomSeleccionCliente(sCliente*Cliente){
-    int ClienteAleatorio = rand()%250+1;
+    int ClienteAleatorio = QRandomGenerator::global()->bounded(1, 251);
+   // int ClienteAleatorio = rand()%250+1;
     sCliente& CleinteSeleccionado = Cliente[ClienteAleatorio];
     sCliente* punteroSCliente = new sCliente{CleinteSeleccionado.idCliente, CleinteSeleccionado.nombre, CleinteSeleccionado.apellido, CleinteSeleccionado.email ,CleinteSeleccionado.telefono, CleinteSeleccionado.fechaNac, CleinteSeleccionado.estado};
     return punteroSCliente;

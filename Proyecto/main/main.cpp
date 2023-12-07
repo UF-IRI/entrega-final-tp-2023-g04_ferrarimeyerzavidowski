@@ -85,13 +85,22 @@ int main() {
     int Nins=0, Nas=0;
     sAsistencia* archi_inscripcion = new sAsistencia[Nins];
 
-    int PersonasAInscribirse=5;
+    int PersonasAInscribirse=10;
     for(int i=0 ; i<PersonasAInscribirse;i++){
         sCliente* clienteActual=RandomSeleccionCliente(clientes);
         sTipo* ClaseElegida=Inscribirse(tiposNuevo,N);
         eReserva reserva= Reserva(clienteActual,ClaseElegida,archi_inscripcion,Nins);
+        std::cout << "\033[1;32m";
+        std::cout << "La Reserva fue exitosa, para el cliente con ID : " << clienteActual->idCliente;
+        std::cout << "\033[0m" << std::endl;
 
-        std::cout<<"La Reserva fue exitosa, para el cliente con id:"<<clienteActual->idCliente<<"Para la clase"<<ClaseElegida->nombreClase<<"a las"<<ClaseElegida->horario<< endl;
+        std::cout << "\033[4;36m";
+        std::cout << "Para la clase " << ClaseElegida->nombreClase;
+        std::cout << "\033[0m" << std::endl; // Restaura el color
+
+        std::cout << "\033[1;35m";
+        std::cout << "A las: " << ClaseElegida->horario;
+        std::cout << "\033[0m" << std::endl;
     }
 
     //"termino las reservas", lo paso a archivo de asistencia
@@ -106,4 +115,4 @@ int main() {
 
     return 0;
 }
-//hola cami
+

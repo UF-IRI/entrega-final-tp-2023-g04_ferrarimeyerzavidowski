@@ -1,4 +1,5 @@
 #include "cliente.h"
+#include <QRandomGenerator>
 
 bool EstadoCuenta(sCliente* cliente){
     srand(time(NULL));
@@ -18,9 +19,7 @@ bool EstadoCuenta(sCliente* cliente){
 
 sTipo* Inscribirse(sTipo* tipos, int tamlista){
     // Inicializo
-    srand(static_cast<unsigned int>(time(nullptr)));
+    int indiceAleatorio = QRandomGenerator::global()->bounded(1, tamlista);
 
-    // Genero un índice aleatorio en el rango [0, tamlista - 1]
-    int indiceAleatorio = rand() % tamlista;
     return &tipos[indiceAleatorio];
 }
