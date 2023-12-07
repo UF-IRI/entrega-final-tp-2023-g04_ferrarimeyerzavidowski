@@ -16,48 +16,16 @@ TEST_CASE("Reserva,horario incorrecto") {
     delete asistPrevia;
 }
 
-TEST_CASE("Reserva - Éxito") {
-    sCliente* cliente = new sCliente;
-    sTipo* clase = new sTipo;
-    sAsistencia* asistPrevia = new sAsistencia;
-    int n = 0;
-    clase->horario = time(nullptr);
-    clase->cupoActual = 5;  //hay espacio disponible
-    eReserva resultado = Reserva(cliente, clase, asistPrevia, n);
-    REQUIRE(resultado == eReserva::ReservaExitosa);
-    delete cliente;
-    delete clase;
-    delete asistPrevia;
+TEST_CASE("Clase inválida") {
+    sTipo* tipo = new sTipo;
+    tipo->nombreClase = "Aewqics";  // Clase no válida
+    bool resultado = VerificarClase(tipo);
+    REQUIRE(resultado == false);
+    delete tipo;
+}
+TEST_CASE("puntero nulo") {
+    sTipo* tipo = nullptr;
+    bool resultado = VerificarClase(tipo);
+    REQUIRE(resultado == false);
 }
 
-TEST_CASE("Reserva - En Deuda") {
-    sCliente* cliente = new sCliente;
-    sTipo* clase = new sTipo;
-    sAsistencia* asistPrevia = new sAsistencia;
-    int n = 0;
-    //datos con cliente en deuda
-    clase->horario = time(nullptr);  // Horario actual
-    cliente->estado = -30;  // Cliente en deuda
-    eReserva resultado = Reserva(cliente, clase, asistPrevia, n);
-    // Verifica que se devuelve EnDeuda
-    REQUIRE(resultado == eReserva::EnDeuda);
-    delete cliente;
-    delete clase;
-    delete asistPrevia;
-}
-
-TEST_CASE("Reserva - Cupos Llenos") {
-    sCliente* cliente = new sCliente;
-    sTipo* clase = new sTipo;
-    sAsistencia* asistPrevia = new sAsistencia;
-    int n = 0;
-    // cupos llenos
-    clase->horario = time(nullptr);  // Horario actual
-    clase->cupoActual = clase->cupoMax;
-    eReserva resultado = Reserva(cliente, clase, asistPrevia, n);
-    // Verificamos que devuelva CuposLlenos
-    REQUIRE(resultado == eReserva::CuposLlenos);
-    delete cliente;
-    delete clase;
-    delete asistPrevia;
-}

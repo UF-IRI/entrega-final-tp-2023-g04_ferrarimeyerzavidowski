@@ -14,7 +14,6 @@ TEST_CASE("EstadoCuenta, cliente endeudado y decide pagar") {
     REQUIRE(cliente->estado < 0);
     // Llama a la función para cambiar el estado
     bool a=EstadoCuenta(cliente);
-
     if(a ==true){// Verifica que el estado cambió a 0 después de pagar
         REQUIRE(cliente->estado == 0);
     }

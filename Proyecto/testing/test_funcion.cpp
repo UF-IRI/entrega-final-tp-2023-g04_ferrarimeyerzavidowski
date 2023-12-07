@@ -22,3 +22,22 @@ TEST_CASE("YaInscriptoHorario - Cliente ya inscripto") {
     REQUIRE(resultado == true);
     delete[] asistPrevia[0].CursosInscriptos;
 }
+
+TEST_CASE("YaInscriptoHorario - Cliente no inscripto") {
+    // Configura el estado para el caso de prueba
+    const int n = 1; // Puedes ajustar según sea necesario
+    sAsistencia asistPrevia[n];
+    sInscripcion cursoInscrito;
+    cursoInscrito.idCurso = 1;
+    cursoInscrito.fechaInscripcion = time(nullptr); // Usa el horario actual para el ejemplo
+    asistPrevia[0].CursosInscriptos = new sInscripcion[2];
+    asistPrevia[0].CursosInscriptos[0].idCurso = 2; // Cliente diferente
+    asistPrevia[0].CursosInscriptos[0].fechaInscripcion = time(nullptr) - 3600; // Hace una hora
+    asistPrevia[0].CursosInscriptos[1].fechaInscripcion = 0; // Marca el final del array
+    // Realiza la prueba llamando a la función
+    bool resultado = YaInscriptoHorario(cursoInscrito.fechaInscripcion, cursoInscrito.idCurso, asistPrevia, n);
+    // Verifica que el resultado sea falso (cliente no inscrito)
+    REQUIRE(resultado == false);
+    // Limpieza de la memoria si es necesario
+    delete[] asistPrevia[0].CursosInscriptos;
+}
